@@ -1,0 +1,62 @@
+<div>
+  <div *ngIf="currentTutorial.id" class="edit-form">
+    <h4>Riembursement Details</h4>
+    <form>
+      <div class="form-group">
+        <label><strong>id:</strong></label>
+        {{ currentTutorial.id }}
+      </div>
+    
+      <div class="form-group">
+        <label><strong>Amount:</strong></label>
+        {{ currentTutorial.title }}
+      </div>
+
+      <div class="form-group">
+        <label><strong>Description:</strong></label>
+        {{ currentTutorial.description }}
+      </div>
+
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentTutorial.published ? "Approved" : "Pending" }}
+      </div>
+    </form>
+
+    <button
+      class="btn btn-primary"
+      *ngIf="currentTutorial.published"
+      (click)="updatePublished(false)"
+    >
+      Deny
+    </button>
+    <button
+      *ngIf="!currentTutorial.published"
+      class="btn btn-primary"
+      (click)="updatePublished(true)"
+    >
+      Approve
+    </button>
+
+    <button class="btn btn-danger" (click)="deleteTutorial()">
+      Delete
+    </button>
+   <!-- Write your comments here 
+   <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateTutorial()"
+    >
+      Update
+    </button>
+  
+  -->
+   
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentTutorial.id">
+    <br />
+    <p>Cannot access this Riembursement...</p>
+  </div>
+</div>

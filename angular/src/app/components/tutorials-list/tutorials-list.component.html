@@ -1,0 +1,37 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+     
+      <script>
+   var favoritemovie = sessionStorage.getItem("favoriteMovie");
+console.log(favoritemovie);
+      </script>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Riembursement List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let tutorial of tutorials; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveTutorial(tutorial, i)"
+      >
+        {{ "id:"+tutorial.id+"   "+ "$"+tutorial.title +"    "+"description: "+tutorial.description + " "+"   Status: "}}
+        {{ currentTutorial.published ? "Approved" : "Pending" }}
+        <a class="btn btn-success" routerLink="/tutorials/{{ currentTutorial.id }}">
+          Edit
+        </a>
+      </li>
+    </ul>
+    
+
+      <!-- 
+         <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTutorials()">
+        Remove All 
+          </button>
+      -->
+
+
+  </div>
+  
