@@ -14,9 +14,6 @@ import dao.RiembDAO;
 import dao.UserDAO;
 import model.UserBean;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/start")
 public class LoginServlet extends HttpServlet {
 
@@ -26,18 +23,14 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-private UserDAO userDAO;
-	
-	public void init() {
-		userDAO = new UserDAO();
+public void init() {
+		new UserDAO();
 	}
 
 public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			           throws ServletException, java.io.IOException {
 
-	String action = request.getServletPath();
-	
-try
+	try
 {	    
 
      UserBean user = new UserBean();
@@ -65,9 +58,12 @@ try
      }
      
 	        
-     else 
-          response.sendRedirect("invalidLogin.jsp"); //error page 
-     
+     else {
+    	 HttpSession session = request.getSession(true);	    
+         session.setAttribute("currentSessionUser",user); 
+         RequestDispatcher dispatcher = request.getRequestDispatcher("invalidLogin.jsp");
+ 		dispatcher.forward(request, response);
+     }
 
 } 
 		

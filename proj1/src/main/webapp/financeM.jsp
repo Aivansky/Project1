@@ -71,6 +71,7 @@
 						<th>Amount</th>
 						<th>Description</th>
 						<th>Reimbursement Type</th>
+						<th>Time</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -83,9 +84,14 @@
 							<td><c:out value="${riem.amount}" /></td>
 							<td><c:out value="${riem.description}" /></td>
 							<td><c:out value="${riem.type}" /></td>
+							<td><c:out value="${riem.time}" /></td>
 							<td><a href="approve?id=<c:out value='${riem.id}' />">Approve</a>
 								&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href="deny?id=<c:out value='${riem.id}' />">Deny</a></td>
+								href="deny?id=<c:out value='${riem.id}' />">Deny</a>
+								&nbsp;&nbsp;
+								<a href="delete?id=<c:out value='${riem.id}' />">Delete</a>
+				
+								</td>
 						</tr>
 					</c:forEach>
 					<!-- } -->

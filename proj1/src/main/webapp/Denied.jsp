@@ -39,14 +39,14 @@
 					<a href="<%=request.getContextPath()%>/approved" class="btn btn-success">View Approved Reimbursements</a>
 			</div>
 			<br>
-			<table class="table table-bordered">
+				<table class="table table-bordered">
 				<thead>
 					<tr>
 						<th>ID</th>
 						<th>Amount</th>
 						<th>Description</th>
 						<th>Reimbursement Type</th>
-						<th>Actions</th>
+						<th>Time</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -58,9 +58,7 @@
 							<td><c:out value="${riem.amount}" /></td>
 							<td><c:out value="${riem.description}" /></td>
 							<td><c:out value="${riem.type}" /></td>
-							<td><a href="edit?id=<c:out value='${riem.id}' />">Edit</a>
-								&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href="delete?id=<c:out value='${riem.id}' />">Delete</a></td>
+							<td><c:out value="${riem.time}" /></td>
 						</tr>
 					</c:forEach>
 					<!-- } -->

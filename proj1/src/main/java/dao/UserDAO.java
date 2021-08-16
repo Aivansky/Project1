@@ -64,7 +64,7 @@ public class UserDAO
          int access = rs.getInt("access");
 	     	
          System.out.println("Welcome " + username1 + " " +access);
-         bean.setFirstName(username1);
+         bean.setUserName(username1);
          bean.setAccess(access);
          bean.setValid(true);
       }

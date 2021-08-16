@@ -1,9 +1,11 @@
 package dao;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class RiembDAO {
 	private static final String SELECT_USER_BY_ID = "select id,amount,description,type from reimbursement where id =?";
 	private static final String SELECT_ALL_USERS = "select * from reimbursement where reimb_status = 0";
 	private static final String DELETE_USERS_SQL = "delete from reimbursement where id = ?;";
-	private static final String UPDATE_USERS_SQL = "update reimbursement set amount = ?,description= ?, type =?::type where id = ?;";
+	private static final String UPDATE_USERS_SQL = "update reimbursement set amount = ?,description= ?, type =?::type,date=? where id = ?;";
 
 	private static final String SELECT_ALL_APPROVED = "select * from reimbursement where reimb_status = 1;";
 	private static final String SELECT_ALL_DENIED = "select * from reimbursement where reimb_status = 2;";
@@ -101,7 +103,7 @@ public class RiembDAO {
 				int amount = rs.getInt("amount");
 				String description = rs.getString("description");
 				String type = rs.getString("type");
-				riembursements = new Riembursements(id, amount, description, type);
+				riembursements = new Riembursements(id, amount, description, type, null);
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -128,7 +130,7 @@ public class RiembDAO {
 				int amount = rs.getInt("amount");
 				String description = rs.getString("description");
 				String type = rs.getString("type");
-				riembursements.add(new Riembursements(id, amount, description, type));
+				riembursements.add(new Riembursements(id, amount, description, type, null));
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -156,7 +158,8 @@ public class RiembDAO {
 				int amount = rs.getInt("amount");
 				String description = rs.getString("description");
 				String type = rs.getString("type");
-				riembursements.add(new Riembursements(id, amount, description, type));
+				Date time = rs.getDate("time");
+				riembursements.add(new Riembursements(id, amount, description, type,time));
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -183,7 +186,8 @@ public class RiembDAO {
 				int amount = rs.getInt("amount");
 				String description = rs.getString("description");
 				String type = rs.getString("type");
-				riembursements.add(new Riembursements(id, amount, description, type));
+				Date time = rs.getDate("time");
+				riembursements.add(new Riembursements(id, amount, description, type, time));
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -210,7 +214,8 @@ public class RiembDAO {
 				int amount = rs.getInt("amount");
 				String description = rs.getString("description");
 				String type = rs.getString("type");
-				riembursements.add(new Riembursements(id, amount, description, type));
+				Date time = rs.getDate("time");
+				riembursements.add(new Riembursements(id, amount, description, type, time));
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -257,6 +262,7 @@ public class RiembDAO {
 			statement.setString(3, riembursements.getType());
 			statement.setInt(4, riembursements.getId());
 			statement.setInt(5, riembursements.getStatus());
+			statement.setDate(6,riembursements.getTime());
 			
 			rowUpdated = statement.executeUpdate() > 0;
 		}

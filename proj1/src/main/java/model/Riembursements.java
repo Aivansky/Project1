@@ -1,19 +1,23 @@
 package model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class Riembursements {
 	private int id;
 	private int status;
 	private int amount;
 	private String description;
 	private String type;
-	
-	public Riembursements(int id, int amount, String description, String type ){
+	private Date time;
+	public Riembursements(int id, int amount, String description, String type, Date time ){
 		super();
 		this.id = id;
 
 		this.amount = amount;
 		this.description = description;
 		this.type = type;
+		this.time = time;
 	}
 		
 	public Riembursements(int amount, String description, String type) {
@@ -54,6 +58,14 @@ public class Riembursements {
 
 	public void setStatus(int status) {
 		this.status = 0;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
 	}
 
 	

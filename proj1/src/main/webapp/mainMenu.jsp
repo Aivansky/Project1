@@ -49,7 +49,7 @@
 						<th>Amount</th>
 						<th>Description</th>
 						<th>Reimbursement Type</th>
-						<th>Actions</th>
+						<th>Time</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,7 +61,7 @@
 							<td><c:out value="${riem.amount}" /></td>
 							<td><c:out value="${riem.description}" /></td>
 							<td><c:out value="${riem.type}" /></td>
-							
+							<td><c:out value="${riem.time}" /></td>
 						</tr>
 					</c:forEach>
 					<!-- } -->

@@ -52,8 +52,8 @@ public class RiembServlet extends HttpServlet {
 			        
 		     else 
 		          response.sendRedirect("invalidLogin.jsp"); //error page 
-		
 		*/
+		
 		
 		
 		
@@ -61,7 +61,15 @@ public class RiembServlet extends HttpServlet {
 		String action = request.getServletPath();
 
 		try {
+					     
+			
+			
+			
 			switch (action) {
+			case "/login":
+				login(request, response);
+				break;
+			
 			case "/menu":
 				listUser(request, response);
 				break;
@@ -109,6 +117,38 @@ public class RiembServlet extends HttpServlet {
 			throw new ServletException(ex);
 		}
 	}
+	private void login(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		UserBean user = new UserBean();
+	     user.setUserName(request.getParameter("un"));
+	     user.setPassword(request.getParameter("pw"));
+
+
+	     user = UserDAO.login(user);
+		   		    
+	     if (user.isValid())
+	     {
+	         HttpSession session = request.getSession(true);	   
+	      if(user.access==1) {
+	      
+	             session.setAttribute("currentSessionUser",user); 
+	             RequestDispatcher dispatcher = request.getRequestDispatcher("success2.jsp");
+	     		dispatcher.forward(request, response);
+	        
+	         }
+	         
+	      
+
+	          response.sendRedirect("success.jsp"); //logged-in page 
+	      //    return;
+	     }
+	     
+		        
+	     else 
+	          response.sendRedirect("invalidLogin.jsp"); //error page 
+		
+	}
+
 	private void start(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
@@ -215,7 +255,7 @@ public class RiembServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		String type = request.getParameter("type");
 
-		Riembursements book = new Riembursements(id, amount, description, type);
+		Riembursements book = new Riembursements(id, amount, description, type, null);
 		riembDAO.updateUser(book);
 		response.sendRedirect("list");
 	}

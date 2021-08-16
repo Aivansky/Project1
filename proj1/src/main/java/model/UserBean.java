@@ -50,6 +50,7 @@ package model;
       public void setUserName(String newUsername) {
          username = newUsername;
 			}
+      
 
 				
       public boolean isValid() {

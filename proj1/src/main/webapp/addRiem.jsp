@@ -107,24 +107,24 @@
 		    <td>Type</td>
 		    <br>    <br>
 		    <td>
-		    	<input type="radio" name="type" value="Lodgingdsfsd"/>Lodging
+		    	<input type="radio" name="type" value="Lodging"/>Lodging
 		    	${riemb.type}
             </td>
              <td>
-		    	<input type="radio" name="type" value="Lodgingdsfsd"/>Travel
+		    	<input type="radio" name="type" value="Travel"/>Travel
 		    	${riemb.type}
             </td>
              <td>
-		    	<input type="radio" name="type" value="Lodgingdsfsd"/>Food
+		    	<input type="radio" name="type" value="Food"/>Food
 		    	${riemb.type}
             </td>
              <td>
-		    	<input type="radio" name="type" value="Lodgingdsfsd"/>Other
+		    	<input type="radio" name="type" value="Other"/>Other
 		    	${riemb.type}
             </td>
             <br>
 		</tr>
-		
+		  <br>  <br>
 		
 				<button type="submit" class="btn btn-success">Save</button>
 			
